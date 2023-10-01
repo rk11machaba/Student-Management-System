@@ -5,16 +5,16 @@
 using namespace std;
 
 class Student {
-//	data members
+	//	data members
 private:
 	string studNum, firstName, lastName;
 
-//	member functions
+	//	member functions
 public:
 	Student(); //	default constructor
 	void PromptUser();
 	void DisplayStudent();
-	void CreateStudent();
+	void CreateStudent();	//	create a file and store student data
 };
 
 Student::Student() {
@@ -31,17 +31,35 @@ void Student::PromptUser() {
 }
 
 void Student::DisplayStudent() {
-	cout << "Name: " << lastName << " " << firstName << endl;
 	cout << "Student Number: " << studNum << endl;
-	cout << "Thank you for registering" << endl;
+	cout << "Name: " << lastName << " " << firstName << endl;
+}
+
+void Student::CreateStudent() {
+	ofstream outFile(studNum + ".txt"); // filename
+
+	if (!outFile.is_open()) {
+		// error message
+		cout << "Failed to create a file!..." << endl;
+		exit(0);
+	}
+	else {
+		outFile << "Student Number: \t" << studNum << endl;
+		outFile << "First Name: \t" << firstName << endl;
+		outFile << "Last Name: \t" << lastName << endl;
+		outFile << "********************************" << endl;
+		cout << "Student file created Successfully" << endl;
+	}
 }
 
 int main() {
 
-	Student obj;
+	Student obj; // create object
 
+	// call member functions 
 	obj.PromptUser();
 	obj.DisplayStudent();
+	obj.CreateStudent();
 
 	system("pause");
 }
