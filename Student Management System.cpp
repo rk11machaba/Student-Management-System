@@ -5,11 +5,11 @@
 using namespace std;
 
 class Student {
-	//	data members
+//	data members
 private:
 	string studNum, firstName, lastName;
 
-	//	member functions
+//	member functions
 public:
 	Student(); //	default constructor
 	void PromptUser();
@@ -56,10 +56,29 @@ int main() {
 
 	Student obj; // create object
 
-	// call member functions 
-	obj.PromptUser();
-	obj.DisplayStudent();
-	obj.CreateStudent();
+	// variables declaration
+	int option;
 
+	//	Menu
+	cout << "***Menu***" << endl;
+	cout << "Add new Student:\t1" << endl;
+	cout<<"Search for a Student:\t2" << endl;
+	cout << "Exit the App!:\t0" << endl;
+	cout << "\nOption: ";
+	cin >> option;
+
+	// if statement
+	if (option == 0) {
+		exit(1);
+	}else
+		if (option == 1) {
+			//call member functions
+			obj.PromptUser();
+			obj.CreateStudent();
+		}else
+			if (option == 2) {
+				//call member function
+				obj.DisplayStudent();
+			}
 	system("pause");
 }
